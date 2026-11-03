@@ -1,0 +1,62 @@
+[LINUX] Checking which user is running the application:
+root
+[LINUX] Launching the sensor-to-advisory pipeline as a background process.
+[LINUX] nice -n 10 gives it lower CPU scheduling priority than a default task.
+[PROCESS] Application started with PID 1697 (parent shell PID 1692).
+    PID    PPID  NI STAT COMMAND
+   1697    1692  10 RN   python3
+[PROCESS] Waiting for application to finish...
+[PROCESS] Application finished normally.
+[DATA] Live pipeline output captured from the application log:
+[SENSOR] Read 6 plot records from /mnt/data/OS_Sugarcane_Project/data/sensor_readings.csv
+[SENSOR] Plot SUG-001: soil=22%, temperature=36 C, forecast rain=0 mm
+[SENSOR] Plot SUG-002: soil=43%, temperature=32 C, forecast rain=3 mm
+[SENSOR] Plot SUG-003: soil=67%, temperature=29 C, forecast rain=18 mm
+[SENSOR] Plot SUG-004: soil=31%, temperature=39 C, forecast rain=1 mm
+[SENSOR] Plot SUG-005: soil=58%, temperature=27 C, forecast rain=12 mm
+[SENSOR] Plot SUG-006: soil=25%, temperature=35 C, forecast rain=22 mm
+[FILE] All values are within allowed ranges. Saved clean readings to outputs/validated.csv
+[MODEL] Training a small linear regression on 650 synthetic examples labelled by a rule-based baseline...
+[MODEL] Training complete. Synthetic in-sample MAE = 2.146 mm (not real-world accuracy).
+[MODEL] Estimated irrigation needs for 6 plots:
+[ADVISORY] SUG-001: 12.9 mm estimated deficit, 5.4 pump minutes -> IRRIGATE: high estimated requirement
+[ADVISORY] SUG-002: 7.2 mm estimated deficit, 4.0 pump minutes -> MONITOR: moderate estimated requirement
+[ADVISORY] SUG-003: 0 mm estimated deficit, 0.0 pump minutes -> DEFER: significant rain forecast
+[ADVISORY] SUG-004: 11.11 mm estimated deficit, 3.7 pump minutes -> MONITOR: moderate estimated requirement
+[ADVISORY] SUG-005: 1.43 mm estimated deficit, 0.7 pump minutes -> NO IRRIGATION: low estimated requirement
+[ADVISORY] SUG-006: 6.17 mm estimated deficit, 2.5 pump minutes -> DEFER: significant rain forecast
+[FILE] Predictions saved to outputs/predictions.csv
+[FILE] Farmer-facing summary written to outputs/advisory.txt
+[ADVISORY] Report includes 6 plot recommendations; expert review required.
+[TIME] All task took 2834.19 ms
+[PIPES / FILTERS] Extracting the main milestone messages using grep:
+[SENSOR] Read 6 plot records from /mnt/data/OS_Sugarcane_Project/data/sensor_readings.csv
+[SENSOR] Plot SUG-001: soil=22%, temperature=36 C, forecast rain=0 mm
+[SENSOR] Plot SUG-002: soil=43%, temperature=32 C, forecast rain=3 mm
+[SENSOR] Plot SUG-003: soil=67%, temperature=29 C, forecast rain=18 mm
+[SENSOR] Plot SUG-004: soil=31%, temperature=39 C, forecast rain=1 mm
+[SENSOR] Plot SUG-005: soil=58%, temperature=27 C, forecast rain=12 mm
+[SENSOR] Plot SUG-006: soil=25%, temperature=35 C, forecast rain=22 mm
+[FILE] All values are within allowed ranges. Saved clean readings to outputs/validated.csv
+[MODEL] Training a small linear regression on 650 synthetic examples labelled by a rule-based baseline...
+[MODEL] Training complete. Synthetic in-sample MAE = 2.146 mm (not real-world accuracy).
+[MODEL] Estimated irrigation needs for 6 plots:
+[ADVISORY] SUG-001: 12.9 mm estimated deficit, 5.4 pump minutes -> IRRIGATE: high estimated requirement
+[ADVISORY] SUG-002: 7.2 mm estimated deficit, 4.0 pump minutes -> MONITOR: moderate estimated requirement
+[ADVISORY] SUG-003: 0 mm estimated deficit, 0.0 pump minutes -> DEFER: significant rain forecast
+[ADVISORY] SUG-004: 11.11 mm estimated deficit, 3.7 pump minutes -> MONITOR: moderate estimated requirement
+[ADVISORY] SUG-005: 1.43 mm estimated deficit, 0.7 pump minutes -> NO IRRIGATION: low estimated requirement
+[ADVISORY] SUG-006: 6.17 mm estimated deficit, 2.5 pump minutes -> DEFER: significant rain forecast
+[FILE] Predictions saved to outputs/predictions.csv
+[FILE] Farmer-facing summary written to outputs/advisory.txt
+[ADVISORY] Report includes 6 plot recommendations; expert review required.
+[TIME] All task took 2834.19 ms
+[FILES] Checking how many lines are in the prediction CSV (including header):
+7 outputs/predictions.csv
+[LINUX] Current CPU / memory snapshot (system-wide):
+top - 07:59:10 up 47 min,  0 users,  load average: 0.56, 0.15, 0.05
+Tasks:  21 total,   1 running,  20 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  2.0 sy,  0.0 ni, 98.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st 
+MiB Mem :   5947.9 total,   4908.2 free,   1133.7 used,     91.9 buff/cache     
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   4814.2 avail Mem 
+[NOTE] You can change a running process's nice value with: renice -n 15 -p PID

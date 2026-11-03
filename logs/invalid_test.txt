@@ -1,0 +1,1 @@
+ERROR: soil_moisture_pct out of range: 150.0

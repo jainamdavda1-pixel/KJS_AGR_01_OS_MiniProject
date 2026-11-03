@@ -1,0 +1,7 @@
+plot_id,predicted_deficit_mm,estimated_liters,pump_minutes,advisory
+SUG-001,12.9,1290.1,5.4,IRRIGATE: high estimated requirement
+SUG-002,7.2,720.0,4.0,MONITOR: moderate estimated requirement
+SUG-003,0,0,0.0,DEFER: significant rain forecast
+SUG-004,11.11,1111.5,3.7,MONITOR: moderate estimated requirement
+SUG-005,1.43,142.9,0.7,NO IRRIGATION: low estimated requirement
+SUG-006,6.17,616.8,2.5,DEFER: significant rain forecast

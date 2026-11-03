@@ -1,0 +1,30 @@
+[SHARED QUEUE] A sensor thread generates 12 example readings.
+[SHARED QUEUE] An analytics thread consumes them from a 3-slot buffer.
+[PROTECTION] Semaphores block writes when full and reads when empty.
+[PROTECTION] A mutex keeps the queue indexes and count consistent.
+[SENSOR THREAD] Received reading #01 -> placed in shared queue (1/3 slots used).
+[SENSOR THREAD] Received reading #02 -> placed in shared queue (2/3 slots used).
+[SENSOR THREAD] Received reading #03 -> placed in shared queue (3/3 slots used).
+[ANALYTICS THREAD] Took reading #01 for processing -> 2/3 slots remain occupied.
+[ANALYTICS THREAD] Took reading #02 for processing -> 1/3 slots remain occupied.
+[ANALYTICS THREAD] Took reading #03 for processing -> 0/3 slots remain occupied.
+[SENSOR THREAD] Received reading #04 -> placed in shared queue (1/3 slots used).
+[SENSOR THREAD] Received reading #05 -> placed in shared queue (2/3 slots used).
+[SENSOR THREAD] Received reading #06 -> placed in shared queue (3/3 slots used).
+[ANALYTICS THREAD] Took reading #04 for processing -> 2/3 slots remain occupied.
+[ANALYTICS THREAD] Took reading #05 for processing -> 1/3 slots remain occupied.
+[ANALYTICS THREAD] Took reading #06 for processing -> 0/3 slots remain occupied.
+[SENSOR THREAD] Received reading #07 -> placed in shared queue (1/3 slots used).
+[SENSOR THREAD] Received reading #08 -> placed in shared queue (2/3 slots used).
+[SENSOR THREAD] Received reading #09 -> placed in shared queue (3/3 slots used).
+[ANALYTICS THREAD] Took reading #07 for processing -> 2/3 slots remain occupied.
+[ANALYTICS THREAD] Took reading #08 for processing -> 1/3 slots remain occupied.
+[ANALYTICS THREAD] Took reading #09 for processing -> 0/3 slots remain occupied.
+[SENSOR THREAD] Received reading #10 -> placed in shared queue (1/3 slots used).
+[SENSOR THREAD] Received reading #11 -> placed in shared queue (2/3 slots used).
+[SENSOR THREAD] Received reading #12 -> placed in shared queue (3/3 slots used).
+[ANALYTICS THREAD] Took reading #10 for processing -> 2/3 slots remain occupied.
+[ANALYTICS THREAD] Took reading #11 for processing -> 1/3 slots remain occupied.
+[ANALYTICS THREAD] Took reading #12 for processing -> 0/3 slots remain occupied.
+[SUMMARY] Received 12, processed 12, still in buffer 0.
+[SUCCESS] Every reading processed exactly once; no queue entries left behind.

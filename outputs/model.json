@@ -1,0 +1,12 @@
+{
+  "weights": [
+    12.730292026541314,
+    -19.536371406107232,
+    7.175681989231428,
+    -0.9736690629285998,
+    -12.624886694597828,
+    -0.8735204180093584
+  ],
+  "synthetic_training_mae_mm": 2.146,
+  "note": "synthetic surrogate trained from rule-based labels; no field validation"
+}

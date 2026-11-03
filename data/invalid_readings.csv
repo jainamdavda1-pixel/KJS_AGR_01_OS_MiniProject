@@ -1,0 +1,2 @@
+plot_id,soil_moisture_pct,temp_c,humidity_pct,rain_forecast_mm,crop_age_days,pump_lpm
+SUG-BAD,150,33,50,0,150,200

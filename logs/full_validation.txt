@@ -1,0 +1,203 @@
+
+============================================================
+  SUGARCANE SMART IRRIGATION | LIVE LINUX DEMONSTRATION
+============================================================
+Input: sensor readings and weather forecasts for sample plots
+Output: predicted water needs and irrigation suggestions
+All data and model labels are SYNTHETIC (educational demo).
+
+[PREPARING] Compiling Linux C applications...
+make: Nothing to be done for 'all'.
+
+[1/5] Starting the irrigation application and monitoring Linux processes...
+[LINUX] Checking which user is running the application:
+root
+[LINUX] Launching the sensor-to-advisory pipeline as a background process.
+[LINUX] nice -n 10 gives it lower CPU scheduling priority than a default task.
+[PROCESS] Application started with PID 1697 (parent shell PID 1692).
+    PID    PPID  NI STAT COMMAND
+   1697    1692  10 RN   python3
+[PROCESS] Waiting for application to finish...
+[PROCESS] Application finished normally.
+[DATA] Live pipeline output captured from the application log:
+[SENSOR] Read 6 plot records from /mnt/data/OS_Sugarcane_Project/data/sensor_readings.csv
+[SENSOR] Plot SUG-001: soil=22%, temperature=36 C, forecast rain=0 mm
+[SENSOR] Plot SUG-002: soil=43%, temperature=32 C, forecast rain=3 mm
+[SENSOR] Plot SUG-003: soil=67%, temperature=29 C, forecast rain=18 mm
+[SENSOR] Plot SUG-004: soil=31%, temperature=39 C, forecast rain=1 mm
+[SENSOR] Plot SUG-005: soil=58%, temperature=27 C, forecast rain=12 mm
+[SENSOR] Plot SUG-006: soil=25%, temperature=35 C, forecast rain=22 mm
+[FILE] All values are within allowed ranges. Saved clean readings to outputs/validated.csv
+[MODEL] Training a small linear regression on 650 synthetic examples labelled by a rule-based baseline...
+[MODEL] Training complete. Synthetic in-sample MAE = 2.146 mm (not real-world accuracy).
+[MODEL] Estimated irrigation needs for 6 plots:
+[ADVISORY] SUG-001: 12.9 mm estimated deficit, 5.4 pump minutes -> IRRIGATE: high estimated requirement
+[ADVISORY] SUG-002: 7.2 mm estimated deficit, 4.0 pump minutes -> MONITOR: moderate estimated requirement
+[ADVISORY] SUG-003: 0 mm estimated deficit, 0.0 pump minutes -> DEFER: significant rain forecast
+[ADVISORY] SUG-004: 11.11 mm estimated deficit, 3.7 pump minutes -> MONITOR: moderate estimated requirement
+[ADVISORY] SUG-005: 1.43 mm estimated deficit, 0.7 pump minutes -> NO IRRIGATION: low estimated requirement
+[ADVISORY] SUG-006: 6.17 mm estimated deficit, 2.5 pump minutes -> DEFER: significant rain forecast
+[FILE] Predictions saved to outputs/predictions.csv
+[FILE] Farmer-facing summary written to outputs/advisory.txt
+[ADVISORY] Report includes 6 plot recommendations; expert review required.
+[TIME] All task took 2834.19 ms
+[PIPES / FILTERS] Extracting the main milestone messages using grep:
+[SENSOR] Read 6 plot records from /mnt/data/OS_Sugarcane_Project/data/sensor_readings.csv
+[SENSOR] Plot SUG-001: soil=22%, temperature=36 C, forecast rain=0 mm
+[SENSOR] Plot SUG-002: soil=43%, temperature=32 C, forecast rain=3 mm
+[SENSOR] Plot SUG-003: soil=67%, temperature=29 C, forecast rain=18 mm
+[SENSOR] Plot SUG-004: soil=31%, temperature=39 C, forecast rain=1 mm
+[SENSOR] Plot SUG-005: soil=58%, temperature=27 C, forecast rain=12 mm
+[SENSOR] Plot SUG-006: soil=25%, temperature=35 C, forecast rain=22 mm
+[FILE] All values are within allowed ranges. Saved clean readings to outputs/validated.csv
+[MODEL] Training a small linear regression on 650 synthetic examples labelled by a rule-based baseline...
+[MODEL] Training complete. Synthetic in-sample MAE = 2.146 mm (not real-world accuracy).
+[MODEL] Estimated irrigation needs for 6 plots:
+[ADVISORY] SUG-001: 12.9 mm estimated deficit, 5.4 pump minutes -> IRRIGATE: high estimated requirement
+[ADVISORY] SUG-002: 7.2 mm estimated deficit, 4.0 pump minutes -> MONITOR: moderate estimated requirement
+[ADVISORY] SUG-003: 0 mm estimated deficit, 0.0 pump minutes -> DEFER: significant rain forecast
+[ADVISORY] SUG-004: 11.11 mm estimated deficit, 3.7 pump minutes -> MONITOR: moderate estimated requirement
+[ADVISORY] SUG-005: 1.43 mm estimated deficit, 0.7 pump minutes -> NO IRRIGATION: low estimated requirement
+[ADVISORY] SUG-006: 6.17 mm estimated deficit, 2.5 pump minutes -> DEFER: significant rain forecast
+[FILE] Predictions saved to outputs/predictions.csv
+[FILE] Farmer-facing summary written to outputs/advisory.txt
+[ADVISORY] Report includes 6 plot recommendations; expert review required.
+[TIME] All task took 2834.19 ms
+[FILES] Checking how many lines are in the prediction CSV (including header):
+7 outputs/predictions.csv
+[LINUX] Current CPU / memory snapshot (system-wide):
+top - 07:59:10 up 47 min,  0 users,  load average: 0.56, 0.15, 0.05
+Tasks:  21 total,   1 running,  20 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  2.0 sy,  0.0 ni, 98.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st 
+MiB Mem :   5947.9 total,   4908.2 free,   1133.7 used,     91.9 buff/cache     
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   4814.2 avail Mem 
+[NOTE] You can change a running process's nice value with: renice -n 15 -p PID
+
+[2/5] Running the three-stage workflow using parent and child processes...
+[WORKFLOW] Parent process PID 1714 is coordinating three independent tasks.
+[FILE CHECK] Opening sensor file: data/sensor_readings.csv
+[FILE CHECK] Successfully read 128 bytes with read(); closed input descriptor.
+
+[WORKFLOW 1/3] Validate raw sensor readings
+[PARENT] Created child PID 1716. Waiting for it to finish before proceeding.
+[CHILD PID 1716] Starting Python acquire task using exec()...
+[SENSOR] Read 6 plot records from data/sensor_readings.csv
+[SENSOR] Plot SUG-001: soil=22%, temperature=36 C, forecast rain=0 mm
+[SENSOR] Plot SUG-002: soil=43%, temperature=32 C, forecast rain=3 mm
+[SENSOR] Plot SUG-003: soil=67%, temperature=29 C, forecast rain=18 mm
+[SENSOR] Plot SUG-004: soil=31%, temperature=39 C, forecast rain=1 mm
+[SENSOR] Plot SUG-005: soil=58%, temperature=27 C, forecast rain=12 mm
+[SENSOR] Plot SUG-006: soil=25%, temperature=35 C, forecast rain=22 mm
+[FILE] All values are within allowed ranges. Saved clean readings to outputs/validated.csv
+[TIME] Acquire task took 0.28 ms
+[PARENT] acquire task completed successfully. Child reaped by waitpid().
+
+[WORKFLOW 2/3] Train demo ML model and estimate water needs
+[PARENT] Created child PID 1726. Waiting for it to finish before proceeding.
+[CHILD PID 1726] Starting Python predict task using exec()...
+[MODEL] Training a small linear regression on 650 synthetic examples labelled by a rule-based baseline...
+[MODEL] Training complete. Synthetic in-sample MAE = 2.146 mm (not real-world accuracy).
+[MODEL] Estimated irrigation needs for 6 plots:
+[ADVISORY] SUG-001: 12.9 mm estimated deficit, 5.4 pump minutes -> IRRIGATE: high estimated requirement
+[ADVISORY] SUG-002: 7.2 mm estimated deficit, 4.0 pump minutes -> MONITOR: moderate estimated requirement
+[ADVISORY] SUG-003: 0 mm estimated deficit, 0.0 pump minutes -> DEFER: significant rain forecast
+[ADVISORY] SUG-004: 11.11 mm estimated deficit, 3.7 pump minutes -> MONITOR: moderate estimated requirement
+[ADVISORY] SUG-005: 1.43 mm estimated deficit, 0.7 pump minutes -> NO IRRIGATION: low estimated requirement
+[ADVISORY] SUG-006: 6.17 mm estimated deficit, 2.5 pump minutes -> DEFER: significant rain forecast
+[FILE] Predictions saved to outputs/predictions.csv
+[TIME] Predict task took 2828.27 ms
+[PARENT] predict task completed successfully. Child reaped by waitpid().
+
+[WORKFLOW 3/3] Write plot-wise irrigation recommendations
+[PARENT] Created child PID 1736. Waiting for it to finish before proceeding.
+[CHILD PID 1736] Starting Python report task using exec()...
+[FILE] Farmer-facing summary written to outputs/advisory.txt
+[ADVISORY] Report includes 6 plot recommendations; expert review required.
+[TIME] Report task took 0.26 ms
+[PARENT] report task completed successfully. Child reaped by waitpid().
+
+[WORKFLOW COMPLETE] Validated data -> model predictions -> irrigation report.
+
+[3/5] Simulating sensor readings and synchronized processing...
+[SHARED QUEUE] A sensor thread generates 12 example readings.
+[SHARED QUEUE] An analytics thread consumes them from a 3-slot buffer.
+[PROTECTION] Semaphores block writes when full and reads when empty.
+[PROTECTION] A mutex keeps the queue indexes and count consistent.
+[SENSOR THREAD] Received reading #01 -> placed in shared queue (1/3 slots used).
+[SENSOR THREAD] Received reading #02 -> placed in shared queue (2/3 slots used).
+[SENSOR THREAD] Received reading #03 -> placed in shared queue (3/3 slots used).
+[ANALYTICS THREAD] Took reading #01 for processing -> 2/3 slots remain occupied.
+[ANALYTICS THREAD] Took reading #02 for processing -> 1/3 slots remain occupied.
+[ANALYTICS THREAD] Took reading #03 for processing -> 0/3 slots remain occupied.
+[SENSOR THREAD] Received reading #04 -> placed in shared queue (1/3 slots used).
+[SENSOR THREAD] Received reading #05 -> placed in shared queue (2/3 slots used).
+[SENSOR THREAD] Received reading #06 -> placed in shared queue (3/3 slots used).
+[ANALYTICS THREAD] Took reading #04 for processing -> 2/3 slots remain occupied.
+[ANALYTICS THREAD] Took reading #05 for processing -> 1/3 slots remain occupied.
+[ANALYTICS THREAD] Took reading #06 for processing -> 0/3 slots remain occupied.
+[SENSOR THREAD] Received reading #07 -> placed in shared queue (1/3 slots used).
+[SENSOR THREAD] Received reading #08 -> placed in shared queue (2/3 slots used).
+[SENSOR THREAD] Received reading #09 -> placed in shared queue (3/3 slots used).
+[ANALYTICS THREAD] Took reading #07 for processing -> 2/3 slots remain occupied.
+[ANALYTICS THREAD] Took reading #08 for processing -> 1/3 slots remain occupied.
+[ANALYTICS THREAD] Took reading #09 for processing -> 0/3 slots remain occupied.
+[SENSOR THREAD] Received reading #10 -> placed in shared queue (1/3 slots used).
+[SENSOR THREAD] Received reading #11 -> placed in shared queue (2/3 slots used).
+[SENSOR THREAD] Received reading #12 -> placed in shared queue (3/3 slots used).
+[ANALYTICS THREAD] Took reading #10 for processing -> 2/3 slots remain occupied.
+[ANALYTICS THREAD] Took reading #11 for processing -> 1/3 slots remain occupied.
+[ANALYTICS THREAD] Took reading #12 for processing -> 0/3 slots remain occupied.
+[SUMMARY] Received 12, processed 12, still in buffer 0.
+[SUCCESS] Every reading processed exactly once; no queue entries left behind.
+
+[4/5] Checking if shared system resources can be allocated safely...
+[RESOURCE MANAGER] Three tasks share the sensor interface, database lock and pump controller.
+[RESOURCE MANAGER] Checking if all tasks could finish without getting stuck.
+
+--- Scenario: Normal system load ---
+  Available free resources: {'Sensor interface': 1, 'Database lock': 1, 'Pump controller': 1}
+  Sensor acquisition currently holds [1, 0, 0]; still needs [0, 1, 0] to finish.
+  Water-needs prediction currently holds [0, 1, 0]; still needs [0, 0, 1] to finish.
+  Advisory report currently holds [0, 0, 0]; still needs [0, 1, 0] to finish.
+  [ALLOW] Sensor acquisition can receive its remaining resources and finish.
+  [RELEASE] It returns held resources. Now available: [2, 1, 1]
+  [ALLOW] Water-needs prediction can receive its remaining resources and finish.
+  [RELEASE] It returns held resources. Now available: [2, 2, 1]
+  [ALLOW] Advisory report can receive its remaining resources and finish.
+  [RELEASE] It returns held resources. Now available: [2, 2, 1]
+  [SAFE] All tasks can complete. One possible completion order:
+  Sensor acquisition -> Water-needs prediction -> Advisory report
+
+--- Scenario: All available resources exhausted ---
+  Available free resources: {'Sensor interface': 0, 'Database lock': 0, 'Pump controller': 0}
+  Sensor acquisition currently holds [1, 0, 0]; still needs [0, 1, 0] to finish.
+  Water-needs prediction currently holds [0, 1, 0]; still needs [0, 0, 1] to finish.
+  Advisory report currently holds [0, 0, 0]; still needs [0, 1, 0] to finish.
+  [BLOCK] No currently runnable task can obtain the resources it still needs.
+  Tasks unable to finish: Sensor acquisition, Water-needs prediction, Advisory report
+  [ACTION] Do not approve this allocation as safe; wait or release resources.
+  [NOTE] This demonstrates an unsafe state, not proof of an actual deadlock.
+
+[CHECK PASSED] Safe and unsafe resource scenarios were identified correctly.
+
+[5/5] Testing how the system responds to corrupted sensor data...
+[SUCCESS] Corrupted data was rejected before producing advisories.
+ERROR: soil_moisture_pct out of range: 150.0
+
+============================================================
+  COMPLETE: All workflow stages and safety checks passed.
+============================================================
+Farmer-friendly advisory: outputs/advisory.txt
+Plot-wise results (CSV): outputs/predictions.csv
+Saved terminal logs: logs/
+
+--- ADVISORY PREVIEW (synthetic demo) ---
+SUGARCANE IRRIGATION ADVISORY — EDUCATIONAL SYNTHETIC DEMO
+Not verified for real farm decisions; agronomist review required.
+
+SUG-001: IRRIGATE: high estimated requirement | deficit 12.9 mm | pump 5.4 min
+SUG-002: MONITOR: moderate estimated requirement | deficit 7.2 mm | pump 4.0 min
+SUG-003: DEFER: significant rain forecast | deficit 0 mm | pump 0.0 min
+SUG-004: MONITOR: moderate estimated requirement | deficit 11.11 mm | pump 3.7 min
+SUG-005: NO IRRIGATION: low estimated requirement | deficit 1.43 mm | pump 0.7 min
+SUG-006: DEFER: significant rain forecast | deficit 6.17 mm | pump 2.5 min

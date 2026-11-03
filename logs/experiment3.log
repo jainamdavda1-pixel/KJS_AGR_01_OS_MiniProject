@@ -1,0 +1,21 @@
+[SENSOR] Read 6 plot records from /mnt/data/OS_Sugarcane_Project/data/sensor_readings.csv
+[SENSOR] Plot SUG-001: soil=22%, temperature=36 C, forecast rain=0 mm
+[SENSOR] Plot SUG-002: soil=43%, temperature=32 C, forecast rain=3 mm
+[SENSOR] Plot SUG-003: soil=67%, temperature=29 C, forecast rain=18 mm
+[SENSOR] Plot SUG-004: soil=31%, temperature=39 C, forecast rain=1 mm
+[SENSOR] Plot SUG-005: soil=58%, temperature=27 C, forecast rain=12 mm
+[SENSOR] Plot SUG-006: soil=25%, temperature=35 C, forecast rain=22 mm
+[FILE] All values are within allowed ranges. Saved clean readings to outputs/validated.csv
+[MODEL] Training a small linear regression on 650 synthetic examples labelled by a rule-based baseline...
+[MODEL] Training complete. Synthetic in-sample MAE = 2.146 mm (not real-world accuracy).
+[MODEL] Estimated irrigation needs for 6 plots:
+[ADVISORY] SUG-001: 12.9 mm estimated deficit, 5.4 pump minutes -> IRRIGATE: high estimated requirement
+[ADVISORY] SUG-002: 7.2 mm estimated deficit, 4.0 pump minutes -> MONITOR: moderate estimated requirement
+[ADVISORY] SUG-003: 0 mm estimated deficit, 0.0 pump minutes -> DEFER: significant rain forecast
+[ADVISORY] SUG-004: 11.11 mm estimated deficit, 3.7 pump minutes -> MONITOR: moderate estimated requirement
+[ADVISORY] SUG-005: 1.43 mm estimated deficit, 0.7 pump minutes -> NO IRRIGATION: low estimated requirement
+[ADVISORY] SUG-006: 6.17 mm estimated deficit, 2.5 pump minutes -> DEFER: significant rain forecast
+[FILE] Predictions saved to outputs/predictions.csv
+[FILE] Farmer-facing summary written to outputs/advisory.txt
+[ADVISORY] Report includes 6 plot recommendations; expert review required.
+[TIME] All task took 2834.19 ms

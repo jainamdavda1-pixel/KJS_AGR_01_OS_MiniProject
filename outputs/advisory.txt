@@ -1,0 +1,9 @@
+SUGARCANE IRRIGATION ADVISORY — EDUCATIONAL SYNTHETIC DEMO
+Not verified for real farm decisions; agronomist review required.
+
+SUG-001: IRRIGATE: high estimated requirement | deficit 12.9 mm | pump 5.4 min
+SUG-002: MONITOR: moderate estimated requirement | deficit 7.2 mm | pump 4.0 min
+SUG-003: DEFER: significant rain forecast | deficit 0 mm | pump 0.0 min
+SUG-004: MONITOR: moderate estimated requirement | deficit 11.11 mm | pump 3.7 min
+SUG-005: NO IRRIGATION: low estimated requirement | deficit 1.43 mm | pump 0.7 min
+SUG-006: DEFER: significant rain forecast | deficit 6.17 mm | pump 2.5 min

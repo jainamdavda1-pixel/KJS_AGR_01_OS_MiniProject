@@ -1,0 +1,28 @@
+[RESOURCE MANAGER] Three tasks share the sensor interface, database lock and pump controller.
+[RESOURCE MANAGER] Checking if all tasks could finish without getting stuck.
+
+--- Scenario: Normal system load ---
+  Available free resources: {'Sensor interface': 1, 'Database lock': 1, 'Pump controller': 1}
+  Sensor acquisition currently holds [1, 0, 0]; still needs [0, 1, 0] to finish.
+  Water-needs prediction currently holds [0, 1, 0]; still needs [0, 0, 1] to finish.
+  Advisory report currently holds [0, 0, 0]; still needs [0, 1, 0] to finish.
+  [ALLOW] Sensor acquisition can receive its remaining resources and finish.
+  [RELEASE] It returns held resources. Now available: [2, 1, 1]
+  [ALLOW] Water-needs prediction can receive its remaining resources and finish.
+  [RELEASE] It returns held resources. Now available: [2, 2, 1]
+  [ALLOW] Advisory report can receive its remaining resources and finish.
+  [RELEASE] It returns held resources. Now available: [2, 2, 1]
+  [SAFE] All tasks can complete. One possible completion order:
+  Sensor acquisition -> Water-needs prediction -> Advisory report
+
+--- Scenario: All available resources exhausted ---
+  Available free resources: {'Sensor interface': 0, 'Database lock': 0, 'Pump controller': 0}
+  Sensor acquisition currently holds [1, 0, 0]; still needs [0, 1, 0] to finish.
+  Water-needs prediction currently holds [0, 1, 0]; still needs [0, 0, 1] to finish.
+  Advisory report currently holds [0, 0, 0]; still needs [0, 1, 0] to finish.
+  [BLOCK] No currently runnable task can obtain the resources it still needs.
+  Tasks unable to finish: Sensor acquisition, Water-needs prediction, Advisory report
+  [ACTION] Do not approve this allocation as safe; wait or release resources.
+  [NOTE] This demonstrates an unsafe state, not proof of an actual deadlock.
+
+[CHECK PASSED] Safe and unsafe resource scenarios were identified correctly.

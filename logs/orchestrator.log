@@ -1,0 +1,18 @@
+stage acquire start, parent PID 480
+stage acquire child PID 482 status 0
+stage predict start, parent PID 480
+stage predict child PID 492 status 0
+stage report start, parent PID 480
+stage report child PID 502 status 0
+stage acquire start, parent PID 1616
+stage acquire child PID 1618 status 0
+stage predict start, parent PID 1616
+stage predict child PID 1628 status 0
+stage report start, parent PID 1616
+stage report child PID 1638 status 0
+stage acquire start, parent PID 1714
+stage acquire child PID 1716 status 0
+stage predict start, parent PID 1714
+stage predict child PID 1726 status 0
+stage report start, parent PID 1714
+stage report child PID 1736 status 0
